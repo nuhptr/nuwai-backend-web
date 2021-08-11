@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -18,22 +19,22 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'email',
+        'username',
+        'roles',
+        'alamat',
+        'kewarganegaraan',
+        'pendidikan',
+        'skill',
+        'prestasi',
+        'posisi_terakhir_bekerja',
+        'lama_terakhir_bekerja',
+        'tempat_terakhir_bekerja',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -41,21 +42,16 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // TODO: relations
+    public function lamaran_pekerjaan() {
+        return $this->hasMany(Lamaran::class, "id_users", "id");
+    }
 }
