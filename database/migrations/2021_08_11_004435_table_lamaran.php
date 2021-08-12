@@ -12,12 +12,11 @@ class TableLamaran extends Migration
         Schema::create("lamaran", function(Blueprint $table) {
             $table->id();
 
-            $table->bigInteger("id_users");
-            $table->bigInteger("id_pekerjaan");
-            $table->timestamp("waktu_lamaran");
+            $table->unsignedBigInteger("id_users");
+            $table->unsignedBigInteger("id_pekerjaan");
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

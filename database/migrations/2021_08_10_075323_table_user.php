@@ -10,7 +10,6 @@ class TableUser extends Migration
     {
         // TODO: input table at user
         Schema::table("users", function(Blueprint $table) {
-            $table->string("username")->after("email")->default("Admin");
             $table->string("roles")->after("email")->default("USER");
             $table->string("alamat")->after("email")->nullable();
             $table->enum("kewarganegaraan", ["Indonesia", "Luar Indonesia"])->after("email")->nullable();
@@ -18,8 +17,8 @@ class TableUser extends Migration
             $table->string("skill")->after("email")->nullable();
             $table->string("prestasi")->after("email")->nullable();
             $table->string("posisi_terakhir_bekerja")->after("email")->nullable();
-            $table->timestamp("lama_terakhir_bekerja", 0)->after("email")->nullable();
             $table->string("tempat_terakhir_bekerja")->after("email")->nullable();
+            $table->double("lama_terakhir_bekerja")->after("email")->nullable();
         });
     }
 
@@ -27,7 +26,6 @@ class TableUser extends Migration
     {
         // TODO: drop column
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn("username");
             $table->dropColumn("roles");
             $table->dropColumn("alamat");
             $table->dropColumn("kewarganegaraan");

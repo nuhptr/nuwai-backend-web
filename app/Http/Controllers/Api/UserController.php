@@ -6,6 +6,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -23,7 +24,11 @@ class UserController extends Controller
             ]);
 
             $credentials = request(["email", "password"]);
-
+            if (!Auth::attempt($credentials)) {
+                return ResponseFormatter::error([
+                    "message" => "Unauthorized",
+                ], "Authentication failed", 500);
+            }
 
         } catch (Exception $error) {
             //throw $th;

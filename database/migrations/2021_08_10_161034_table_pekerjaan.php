@@ -17,13 +17,12 @@ class TablePekerjaan extends Migration
             $table->double("gaji")->nullable();
             $table->string("logo_perusahaan_path", 2048)->nullable();
             $table->string("tentang_pembuka_lowongan")->nullable();
-            $table->timestamp("tanggal_dibuat", 0);
             $table->dateTime("tenggang_waktu_pekerjaan", 0);
             $table->string("lokasi_pekerjaan");
             $table->enum("kategori", ["Perusahaan", "Perorangan"]);
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
