@@ -13,7 +13,6 @@ class Lamaran extends Model
     protected $fillable = [
         'id_users',
         'id_pekerjaan',
-        'waktu_lamaran',
     ];
 
      // TODO: relationships
