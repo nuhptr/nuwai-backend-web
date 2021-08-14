@@ -9,7 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -58,7 +58,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', new Password],
+                'password' => ['required', 'string', new Password(8)],
             ]);
 
             User::create([
@@ -98,5 +98,7 @@ class UserController extends Controller
         $user = Auth::user();
         // TODO: cuma error intelphensenya aja
         $user->update($data);
+
+        return ResponseFormatter::success($user, 'Profile updated');
     }
 }

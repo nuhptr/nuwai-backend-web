@@ -16,6 +16,7 @@ class TablePekerjaan extends Migration
             $table->string("nama_perusahaan")->nullable();
             $table->double("gaji")->nullable();
             $table->string("logo_perusahaan_path", 2048)->nullable();
+            $table->string("foto_lowongan", 2048)->nullable();
             $table->string("tentang_pembuka_lowongan")->nullable();
             $table->dateTime("tenggang_waktu_pekerjaan", 0);
             $table->string("lokasi_pekerjaan");

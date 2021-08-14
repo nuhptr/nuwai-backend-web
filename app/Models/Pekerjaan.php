@@ -16,6 +16,7 @@ class Pekerjaan extends Model
         'nama_perusahaan',
         'gaji',
         'logo_perusahaan_path',
+        'foto_lowongan',
         'tentang_pembuka_lowongan',
         'tenggang_waktu_pekerjaan',
         'lokasi_pekerjaan',
