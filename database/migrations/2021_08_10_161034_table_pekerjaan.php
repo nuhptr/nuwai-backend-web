@@ -9,7 +9,7 @@ class TablePekerjaan extends Migration
     public function up()
     {
         // TODO: input to database
-        Schema::create("pekerjaan", function(Blueprint $table) {
+        Schema::create("pekerjaans", function(Blueprint $table) {
             $table->id();
             $table->string("nama_pekerjaan");
             $table->longText("deskripsi");
@@ -30,6 +30,6 @@ class TablePekerjaan extends Migration
     public function down()
     {
         // TODO: drop database
-        Schema::dropIfExists('pekerjaan');
+        Schema::dropIfExists('pekerjaans');
     }
 }

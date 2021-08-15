@@ -9,7 +9,7 @@ class TableLamaran extends Migration
     public function up()
     {
         // TODO: input to database
-        Schema::create("lamaran", function(Blueprint $table) {
+        Schema::create("lamarans", function(Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger("id_users");
@@ -23,6 +23,6 @@ class TableLamaran extends Migration
     public function down()
     {
         // TODO: drop database
-        Schema::dropIfExists("lamaran");
+        Schema::dropIfExists("lamarans");
     }
 }
