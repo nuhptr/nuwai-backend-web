@@ -36,7 +36,8 @@ class PekerjaanController extends Controller
             }
         }
 
-        $job = Pekerjaan::with(['lamaran']);
+        // TODO: tanpa menampilkan relasinya
+        $job = Pekerjaan::query();
 
         if ($namaPekerjaan) {
             $job->where('nama_pekerjaan', 'like', '%' . $namaPekerjaan. '%');
@@ -51,7 +52,7 @@ class PekerjaanController extends Controller
         }
 
         if ($gaji) {
-            $job->where('gaji', 'like', '%'. $gaji . '%');
+            $job->where('gaji', '<=', $gaji);
         }
 
         return ResponseFormatter::success(

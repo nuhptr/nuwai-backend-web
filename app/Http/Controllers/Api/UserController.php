@@ -15,6 +15,25 @@ class UserController extends Controller
 {
     // TODO: fetch
     public function fetch(Request $request) {
+        $id = $request->input("id");
+        
+        if ($id) {
+            $user = User::with(["lamaran_pekerjaan"])->find($id);
+
+            if ($user) {
+                return ResponseFormatter::success(
+                    $user,
+                    "Data user berhasil diambil"
+                );
+            } else {
+                return ResponseFormatter::error(
+                    null,
+                    "Data user tidak berhasil diambil",
+                    404,
+                );
+            }
+        }
+
         return ResponseFormatter::success($request->user(), "data profile berhasil diambil");
     }
 
