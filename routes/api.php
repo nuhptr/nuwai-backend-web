@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LamaranController;
 use App\Http\Controllers\Api\PekerjaanController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', [UserController::class, 'logout']);
 
     // TODO: route lamaran
-    
+    Route::get('lamaran', [LamaranController::class, 'all']);
+    Route::post('lamaran', [LamaranController::class, 'lamaran']);
 });
 
 Route::get('jobs', [PekerjaanController::class, 'all']);
