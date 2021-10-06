@@ -10,7 +10,7 @@ class TableLamaran extends Migration
     {
         // TODO: input to database
         Schema::create("lamarans", function(Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
 
             $table->unsignedBigInteger("id_users");
             $table->unsignedBigInteger("id_pekerjaan");

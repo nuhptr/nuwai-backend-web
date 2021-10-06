@@ -13,7 +13,7 @@ class PekerjaanController extends Controller
     public function all(Request $request) {
         $id = $request->input('id');
         $limit = $request->input('limit', 6);
-        $namaPekerjaan =  $request->input('nama_pekerjaan');
+        $nama_pekerjaan =  $request->input('nama_pekerjaan');
         $kategori = $request->input('kategori');
         $deskripsi = $request->input('deksripsi');
         
@@ -39,8 +39,8 @@ class PekerjaanController extends Controller
         // TODO: tanpa menampilkan relasinya
         $job = Pekerjaan::query();
 
-        if ($namaPekerjaan) {
-            $job->where('nama_pekerjaan', 'like', '%' . $namaPekerjaan. '%');
+        if ($nama_pekerjaan) {
+            $job->where('nama_pekerjaan', 'like', '%' . $nama_pekerjaan. '%');
         }
 
         if ($deskripsi) {

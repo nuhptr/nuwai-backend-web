@@ -10,7 +10,7 @@ class TablePekerjaan extends Migration
     {
         // TODO: input to database
         Schema::create("pekerjaans", function(Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
             $table->string("nama_pekerjaan");
             $table->longText("deskripsi");
             $table->string("nama_perusahaan")->nullable();
