@@ -113,6 +113,10 @@ class UserController extends Controller
     // TODO: update profile
     public function updateProfile(Request $request) {
         $data = $request->all();
+        
+        if ($request->file('profile_photo_path')) {
+            $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
+        }
 
         $user = Auth::user();
         // TODO: cuma error intelphensenya aja

@@ -32,6 +32,7 @@ class User extends Authenticatable
         'lama_terakhir_bekerja',
         'tempat_terakhir_bekerja',
         'password',
+        'profile_photo_path',
     ];
 
     protected $hidden = [

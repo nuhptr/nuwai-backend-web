@@ -30,7 +30,7 @@ class PekerjaanController extends Controller
             } else {
                 return ResponseFormatter::error(
                     null,
-                    "Data produk tidak ada",
+                    "Data pekerjaan tidak ada",
                     404,
                 );
             }
