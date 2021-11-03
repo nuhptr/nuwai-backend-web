@@ -18,7 +18,7 @@ class TableUser extends Migration
             $table->string("prestasi")->after("email")->nullable();
             $table->string("posisi_terakhir_bekerja")->after("email")->nullable();
             $table->string("tempat_terakhir_bekerja")->after("email")->nullable();
-            $table->double("lama_terakhir_bekerja")->after("email")->nullable();
+            $table->integer("lama_terakhir_bekerja")->after("email")->nullable();
         });
     }
 

@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -112,13 +113,22 @@ class UserController extends Controller
 
     // TODO: update profile
     public function updateProfile(Request $request) {
+        $user = Auth::user();
         $data = $request->all();
+
+        // dd($data);
         
-        if ($request->file('profile_photo_path')) {
-            $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
+        if ($request->File('file')) {
+            $file = $request->file('file')->store('assets/user', 'public');
+
+            // store your file into database
+            $user = Auth::user();
+            $user->profile_photo_path = $file;
+            $user->update();
+
+            return ResponseFormatter::success([$file], 'File Succesfully uploaded');
         }
 
-        $user = Auth::user();
         // TODO: cuma error intelphensenya aja
         $user->update($data);
 
