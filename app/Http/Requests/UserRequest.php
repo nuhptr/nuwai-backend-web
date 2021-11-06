@@ -28,7 +28,6 @@ class UserRequest extends FormRequest
             // TODO: rules untuk mengubah inputan/editan user
             'name' => 'required|string|max:255',
             'email' => 'required|email|string|max:255',
-            'username' => 'required|string|max:255',
             'roles' => 'required|in:USER,ADMIN|string|max:255',
         ];
     }

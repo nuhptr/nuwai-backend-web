@@ -9,7 +9,8 @@ class PekerjaanController extends Controller
 {
     public function index()
     {
-        //
+        // TODO: first time open the web
+        
     }
 
     public function create()

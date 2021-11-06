@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LamaranRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class LamaranController extends Controller
         //
     }
 
-    public function store(UserRequest $request)
+    public function store(LamaranRequest $request)
     {
         //
     }
