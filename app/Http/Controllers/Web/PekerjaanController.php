@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\WEB;
 
-use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PekerjaanRequest;
 use App\Models\Pekerjaan;
@@ -51,19 +50,33 @@ class PekerjaanController extends Controller
     public function store(PekerjaanRequest $request)
     {
         // TODO: save request data to database
-        $data = $request->all();
+       $this->validate($request, [
+            'nama_pekerjaan' => 'required|string|max:255',
+            'deskripsi' => 'required',
+            'logo_perusahaan_path' => 'image|mimes:jpeg,png,bmp,gif,svg',
+            'foto_lowongan' => 'required|image|mimes:jpeg,png,bmp,gif,svg',
+            'tenggang_waktu_pekerjaan' => 'required',
+            'lokasi_pekerjaan' => 'required|string|max:255',
+            'kategori' => 'required|in:Perusahaan,Perorangan',
+       ]);
 
-        $model = Pekerjaan::create($data);
+        // upload image
+        $image_logo = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
+        $image_lowongan = $request->file('foto_lowongan')->store('assets/lowongan', 'public');
 
-        if ($request->hasFile('logo_perusahaan_path') && $request->hasFile('foto_lowongan')) {
-            $logo_path = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
-            $lowongan_path = $request->file('foto_lowongan')->store('assets/lowongan', 'public');
-
-            $model->update([
-                'logo_perusahaan_path' => $logo_path,
-                'foto_lowongan' => $lowongan_path
-            ]);
-        }
+        // save to db
+        Pekerjaan::create([
+            'logo_perusahaan_path'      => $image_logo ?? '',
+            'foto_lowongan'             => $image_lowongan,
+            'nama_pekerjaan'            => $request->nama_perusahaan,
+            'deskripsi'                 => $request->deskripsi,
+            'nama_perusahaan'           => $request->nama_perusahaan,
+            'gaji'                      => $request->gaji,
+            'tentang_pembuka_lowongan'  => $request->tentang_pembuka_lowongan,
+            'tenggang_waktu_pekerjaan'  => $request->tenggang_waktu_pekerjaan,
+            'lokasi_pekerjaan'          => $request->lokasi_pekerjaan,
+            'kategori'                  => $request->kategori,
+        ]);
         
         return redirect()->route('dashboard.pekerjaan.index');
     }
@@ -84,23 +97,41 @@ class PekerjaanController extends Controller
     public function update(PekerjaanRequest $request, Pekerjaan $pekerjaan)
     {
         // TODO: update data to db
-        $data = $request->all();
-
-         if ($request->hasFile('logo_perusahaan_path') && $request->hasFile('foto_lowongan')) {
-            $file_logo = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
-            $file_lowongan = $request->file('foto_lowongan')->store('assets/lowongan', 'public');
-
-            $job = new Pekerjaan();
-            $job->logo_perusahaan_path = $file_logo;
-            $job->foto_lowongan = $file_lowongan;
-            $job->save();
-
-            return ResponseFormatter::success([$data], 'success update');
+        if ($request->file('logo_perusahaan_path') && $request->file('foto_lowongan') == '') {
+            // update tanpa image
+            $pekerjaan = Pekerjaan::findOrFail($pekerjaan->id);
+            $pekerjaan->update([
+                'nama_pekerjaan'            => $request->nama_pekerjaan,
+                'deskripsi'                 => $request->deskripsi,
+                'nama_perusahaan'           => $request->nama_perusahaan,
+                'gaji'                      => $request->gaji,
+                'tentang_pembuka_lowongan'  => $request->tentang_pembuka_lowongan,
+                'tenggang_waktu_pekerjaan'  => $request->tenggang_waktu_pekerjaan,
+                'lokasi_pekerjaan'          => $request->lokasi_pekerjaan,
+                'kategori'                  => $request->kategori,
+            ]);
+        } else {
+            // upload image baru
+            $image_logo = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
+            $image_lowongan = $request->file('foto_lowongan')->store('assets/lowongan', 'public');
+            
+            // update dengan image
+            $pekerjaan = Pekerjaan::findOrFail($pekerjaan->id);
+            $pekerjaan->update([
+                'logo_perusahaan_path'      => $image_logo,
+                'foto_lowongan'             => $image_lowongan,
+                'nama_pekerjaan'            => $request->nama_pekerjaan,
+                'deskripsi'                 => $request->deskripsi,
+                'nama_perusahaan'           => $request->nama_perusahaan,
+                'gaji'                      => $request->gaji,
+                'tentang_pembuka_lowongan'  => $request->tentang_pembuka_lowongan,
+                'tenggang_waktu_pekerjaan'  => $request->tenggang_waktu_pekerjaan,
+                'lokasi_pekerjaan'          => $request->lokasi_pekerjaan,
+                'kategori'                  => $request->kategori,
+            ]);
         }
-
-        $pekerjaan->update($data);
-
-        return redirect()->route('dashboard.pekerjaan.index');
+        
+        return redirect()->route('dashboard.pekerjaan.index')->with(['success' => "Data Berhasil diupdate!"]);
     }
 
     public function destroy(Pekerjaan $pekerjaan)

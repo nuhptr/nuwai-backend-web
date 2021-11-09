@@ -49,7 +49,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                                 Nama Perusahaan
                             </label>
-                            <input value="{{ old('nama_perusahaan') ?? $item->nama_perusahaan }}" name="nama_perusahaan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="{{($item->nama_perusahaan == 0) ? 'Nama Perusahaan' : '$item->nama_perusahaan'}}">
+                            <input value="{{ old('nama_perusahaan') ?? $item->nama_perusahaan }}" name="nama_perusahaan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Nama Perusahaan">
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -66,7 +66,7 @@
                                 Logo Perusahaan
                             </label>
                             <img src="{{ Storage::url($item->logo_perusahaan_path ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png') }}" width="200" height="200"/>
-                            <input accept="image" value="{{ old('logo_perusahaan_path') ?? $item->logo_perusahaan_path}}" name="logo_perusahaan_path" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mt-2 " id="grid-last-name" type="file">
+                            <input accept="image" value="{{ old('logo_perusahaan_path') }}" name="logo_perusahaan_path" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mt-2 " id="grid-last-name" type="file">
                         </div>
                     </div>
                      <div class="flex flex-wrap -mx-3 mb-6">
@@ -75,7 +75,7 @@
                                 Foto Lowongan
                             </label>
                              <img src="{{ Storage::url($item->foto_lowongan ?? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png") }}" width="200" height="200"/>
-                            <input accept="image" value="{{ old('foto_lowongan') ?? $item->foto_lowongan }}" name="foto_lowongan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mt-2" id="grid-last-name" type="file" placeholder="Gallery Photo">
+                            <input accept="image" value="{{ old('foto_lowongan') }}" name="foto_lowongan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mt-2" id="grid-last-name" type="file" placeholder="Gallery Photo">
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">

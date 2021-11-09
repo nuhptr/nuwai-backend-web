@@ -25,11 +25,10 @@ class PekerjaanRequest extends FormRequest
     public function rules()
     {
         return [
-            // TODO: request yang masuk ke pekerjaan
             'nama_pekerjaan' => 'required|string|max:255',
             'deskripsi' => 'required',
-            'logo_perusahaan_path' => 'image',
-            'foto_lowongan' => 'image',
+            'logo_perusahaan_path' => 'image|mimes:jpeg,png,bmp,gif,svg',
+            'foto_lowongan' => 'image|mimes:jpeg,png,bmp,gif,svg',
             'tenggang_waktu_pekerjaan' => 'required',
             'lokasi_pekerjaan' => 'required|string|max:255',
             'kategori' => 'required|in:Perusahaan,Perorangan',
