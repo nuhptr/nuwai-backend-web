@@ -49,9 +49,20 @@ class LamaranController extends Controller
         //
     }
 
-    public function show($id)
+    public function show(Lamaran $lamaran)
     {
-        //
+        // TODO: show detail page
+        if (request()->ajax()) {
+            $query = Lamaran::with(['user', 'pekerjaan'])->where('user_id', $lamaran->id);
+
+            return DataTables::of($query)->editColumn(
+                'pekerjaan.gaji', function($item) {
+                    return number_format($item->pekerjaan->gaji);
+                }
+            )->make();
+        }
+
+        return view('layouts.dashboard.lamaran.show', compact($lamaran));
     }
 
     public function edit($id)
