@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Pekerjaan extends Model
 {
@@ -15,13 +16,24 @@ class Pekerjaan extends Model
         'deskripsi',
         'nama_perusahaan',
         'gaji',
-        'logo_perusahaan_path',
-        'foto_lowongan',
         'tentang_pembuka_lowongan',
         'tenggang_waktu_pekerjaan',
         'lokasi_pekerjaan',
         'kategori',
     ];
+
+    protected $appends = [
+        'logo_perusahaan_path',
+        'foto_lowongan',
+    ];
+
+    public function getLogoPerusahaanPathAttribute() {
+        return config('app.url') . Storage::url($this->attributes['logo_perusahaan_path']);
+    }
+
+    public function getFotoLowonganAttribute() {
+        return config('app.url') . Storage::url($this->attributes['foto_lowongan']);
+    }
 
     // TODO: relations
     public function lamaran() {

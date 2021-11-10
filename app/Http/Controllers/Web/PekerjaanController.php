@@ -131,7 +131,7 @@ class PekerjaanController extends Controller
             ]);
         }
         
-        return redirect()->route('dashboard.pekerjaan.index')->with(['success' => "Data Berhasil diupdate!"]);
+        return redirect()->route('dashboard.pekerjaan.index');
     }
 
     public function destroy(Pekerjaan $pekerjaan)

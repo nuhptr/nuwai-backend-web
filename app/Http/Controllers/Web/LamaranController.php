@@ -53,7 +53,7 @@ class LamaranController extends Controller
     {
         // TODO: show detail page
         if (request()->ajax()) {
-            $query = Lamaran::with(['user', 'pekerjaan'])->where('user_id', $lamaran->id);
+            $query = Lamaran::with(['user', 'pekerjaan']);
 
             return DataTables::of($query)->editColumn(
                 'pekerjaan.gaji', function($item) {
@@ -62,7 +62,9 @@ class LamaranController extends Controller
             )->make();
         }
 
-        return view('layouts.dashboard.lamaran.show', compact($lamaran));
+        return view('layouts.dashboard.lamaran.show', [
+            'lamaran' => $lamaran
+        ]);
     }
 
     public function edit($id)
