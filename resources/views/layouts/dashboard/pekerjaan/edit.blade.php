@@ -65,7 +65,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                                 Logo Perusahaan
                             </label>
-                            <img src="{{ Storage::url($item->logo_perusahaan_path ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png') }}" width="200" height="200"/>
+                            <img src="{{ $item->logo_perusahaan_path ?? 'https://www.xlcncm.com/images/products/vertical-honing.jpg'}}" width="200" height="200"/>
                             <input accept="image" value="{{ old('logo_perusahaan_path') }}" name="logo_perusahaan_path" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mt-2 " id="grid-last-name" type="file">
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                                 Foto Lowongan
                             </label>
-                             <img src="{{ Storage::url($item->foto_lowongan ?? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png") }}" width="200" height="200"/>
+                             <img src="{{ $item->foto_lowongan ?? 'https://www.xlcncm.com/images/products/vertical-honing.jpg' }}" width="200" height="200"/>
                             <input accept="image" value="{{ old('foto_lowongan') }}" name="foto_lowongan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mt-2" id="grid-last-name" type="file" placeholder="Gallery Photo">
                         </div>
                     </div>
