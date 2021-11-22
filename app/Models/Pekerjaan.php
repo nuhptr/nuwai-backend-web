@@ -25,19 +25,22 @@ class Pekerjaan extends Model
     ];
 
     // protected $appends = [
-        
+
     // ];
 
-    public function getLogoPerusahaanPathAttribute() {
+    public function getLogoPerusahaanPathAttribute()
+    {
         return config('app.url') . Storage::url($this->attributes['logo_perusahaan_path']);
     }
 
-    public function getFotoLowonganAttribute() {
+    public function getFotoLowonganAttribute()
+    {
         return config('app.url') . Storage::url($this->attributes['foto_lowongan']);
     }
 
     // TODO: relations
-    public function lamaran() {
+    public function lamaran()
+    {
         return $this->hasMany(Lamaran::class, "id_pekerjaan", "id");
     }
 }

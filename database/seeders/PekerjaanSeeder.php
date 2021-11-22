@@ -37,7 +37,7 @@ class PekerjaanSeeder extends Seeder
                 'gaji' => null,
                 'logo_perusahaan_path' => 'https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/company-logo/d741368af533bc53895cfe454fb1df19.png',
                 'foto_lowongan' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1532&q=80',
-                'tentang_pembuka_lowongan' => 'Gramedia Asri Media adalah anak perusahaan Kompas Gramedia yang menyediakan jaringan toko buku dengan nama Toko Buku Gramedia di beberapa kota di Indonesia',
+                'tentang_pembuka_lowongan' => 'Bimbel Ganesha Operation merupakan lembaga bimbingan belajar terbaik dan terbesar di Indonesia. Berdiri sejak 2 Mei 1984 di Kota Bandung, saat ini Ganesha Operation telah tersebar di 265 kota di Indonesia, mulai dari Aceh hingga Ambon',
                 'tenggang_waktu_pekerjaan' => '2021-10-10 17:00:00',
                 'lokasi_pekerjaan' => 'Pringsewu',
                 'kategori' => 'Perusahaan',

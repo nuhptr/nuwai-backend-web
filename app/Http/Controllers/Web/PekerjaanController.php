@@ -33,8 +33,8 @@ class PekerjaanController extends Controller
             })->editColumn('gaji', function ($item) {
                 return number_format($item->gaji);
             })
-            ->rawColumns(['action'])
-            ->make();
+                ->rawColumns(['action'])
+                ->make();
         }
 
         return view('layouts.dashboard.pekerjaan.index');
@@ -50,7 +50,7 @@ class PekerjaanController extends Controller
     public function store(PekerjaanRequest $request)
     {
         // TODO: save request data to database
-       $this->validate($request, [
+        $this->validate($request, [
             'nama_pekerjaan' => 'required|string|max:255',
             'deskripsi' => 'required',
             'logo_perusahaan_path' => 'image|mimes:jpeg,png,bmp,gif,svg',
@@ -58,7 +58,7 @@ class PekerjaanController extends Controller
             'tenggang_waktu_pekerjaan' => 'required',
             'lokasi_pekerjaan' => 'required|string|max:255',
             'kategori' => 'required|in:Perusahaan,Perorangan',
-       ]);
+        ]);
 
         // upload image
         $image_logo = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
@@ -68,7 +68,7 @@ class PekerjaanController extends Controller
         Pekerjaan::create([
             'logo_perusahaan_path'      => $image_logo ?? '',
             'foto_lowongan'             => $image_lowongan,
-            'nama_pekerjaan'            => $request->nama_perusahaan,
+            'nama_pekerjaan'            => $request->nama_pekerjaan,
             'deskripsi'                 => $request->deskripsi,
             'nama_perusahaan'           => $request->nama_perusahaan,
             'gaji'                      => $request->gaji,
@@ -77,7 +77,7 @@ class PekerjaanController extends Controller
             'lokasi_pekerjaan'          => $request->lokasi_pekerjaan,
             'kategori'                  => $request->kategori,
         ]);
-        
+
         return redirect()->route('dashboard.pekerjaan.index');
     }
 
@@ -114,7 +114,7 @@ class PekerjaanController extends Controller
             // upload image baru
             $image_logo = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
             $image_lowongan = $request->file('foto_lowongan')->store('assets/lowongan', 'public');
-            
+
             // update dengan image
             $pekerjaan = Pekerjaan::findOrFail($pekerjaan->id);
             $pekerjaan->update([
@@ -130,7 +130,7 @@ class PekerjaanController extends Controller
                 'kategori'                  => $request->kategori,
             ]);
         }
-        
+
         return redirect()->route('dashboard.pekerjaan.index');
     }
 
