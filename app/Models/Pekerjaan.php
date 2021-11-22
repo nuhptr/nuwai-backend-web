@@ -20,12 +20,13 @@ class Pekerjaan extends Model
         'tenggang_waktu_pekerjaan',
         'lokasi_pekerjaan',
         'kategori',
-    ];
-
-    protected $appends = [
         'logo_perusahaan_path',
         'foto_lowongan',
     ];
+
+    // protected $appends = [
+        
+    // ];
 
     public function getLogoPerusahaanPathAttribute() {
         return config('app.url') . Storage::url($this->attributes['logo_perusahaan_path']);
