@@ -5,8 +5,6 @@ namespace App\Http\Controllers\WEB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PekerjaanRequest;
 use App\Models\Pekerjaan;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class PekerjaanController extends Controller
@@ -97,10 +95,19 @@ class PekerjaanController extends Controller
     public function update(PekerjaanRequest $request, Pekerjaan $pekerjaan)
     {
         // TODO: update data to db
-        if ($request->file('logo_perusahaan_path') && $request->file('foto_lowongan') == '') {
-            // update tanpa image
+        if (
+            $request->file('logo_perusahaan_path') != ''
+            || $request->file('foto_lowongan') != ''
+        ) {
+            // upload image baru
+            $image_logo = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
+            $image_lowongan = $request->file('foto_lowongan')->store('assets/lowongan', 'public');
+
+            // update with image
             $pekerjaan = Pekerjaan::findOrFail($pekerjaan->id);
             $pekerjaan->update([
+                'logo_perusahaan_path'      => $image_logo,
+                'foto_lowongan'             => $image_lowongan,
                 'nama_pekerjaan'            => $request->nama_pekerjaan,
                 'deskripsi'                 => $request->deskripsi,
                 'nama_perusahaan'           => $request->nama_perusahaan,
@@ -111,15 +118,9 @@ class PekerjaanController extends Controller
                 'kategori'                  => $request->kategori,
             ]);
         } else {
-            // upload image baru
-            $image_logo = $request->file('logo_perusahaan_path')->store('assets/logo', 'public');
-            $image_lowongan = $request->file('foto_lowongan')->store('assets/lowongan', 'public');
-
-            // update dengan image
+            // update without image
             $pekerjaan = Pekerjaan::findOrFail($pekerjaan->id);
             $pekerjaan->update([
-                'logo_perusahaan_path'      => $image_logo,
-                'foto_lowongan'             => $image_lowongan,
                 'nama_pekerjaan'            => $request->nama_pekerjaan,
                 'deskripsi'                 => $request->deskripsi,
                 'nama_perusahaan'           => $request->nama_perusahaan,

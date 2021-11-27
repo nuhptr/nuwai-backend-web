@@ -12,15 +12,8 @@ class Pekerjaan extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'nama_pekerjaan',
-        'deskripsi',
-        'nama_perusahaan',
-        'gaji',
-        'tentang_pembuka_lowongan',
-        'tenggang_waktu_pekerjaan',
-        'lokasi_pekerjaan',
-        'kategori',
-        'logo_perusahaan_path',
+        'nama_pekerjaan', 'deskripsi', 'nama_perusahaan', 'gaji', 'tentang_pembuka_lowongan',
+        'tenggang_waktu_pekerjaan', 'lokasi_pekerjaan', 'kategori', 'logo_perusahaan_path', 
         'foto_lowongan',
     ];
 

@@ -99,7 +99,25 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                                 Lokasi Pekerjaan
                             </label>
-                            <input value="{{ old('lokasi_pekerjaan') ?? $item->lokasi_pekerjaan }}" name="lokasi_pekerjaan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Lokasi Pekerjaan">
+                            <select name="lokasi_pekerjaan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name">
+                                <option value="Bandar Lampung">Bandar Lampung</option>
+                                <option value="Lampung Barat">Lampung Barat</option>
+                                <option value="Lampung Selatan">Lampung Selatan</option>
+                                <option value="Lampung Timur">Lampung Timur</option>
+                                <option value="Lampung Utara">Lampung Utara</option>
+                                <option value="Lampung Tengah">Lampung Tengah</option>
+                                <option value="Mesuji">Mesuji</option>
+                                <option value="Metro">Metro</option>
+                                <option value="Pesawaran">Pesawaran</option>
+                                <option value="Pesisir Barat">Pesisir Barat</option>
+                                <option value="Pringsewu">Pringsewu</option>
+                                <option value="Tanggamus">Tanggamus</option>
+                                <option value="Tulang Bawang">Tulang Bawang</option>
+                                <option value="Tulang Bawang Barat">Tulang Bawang Barat</option>
+                                <option value="Way Kanan">Way Kanan</option>
+                                <option disabled>-------</option>
+                                <option value="{{$item->lokasi_pekerjaan}}"> {{$item->lokasi_pekerjaan}}</option>
+                            </select>
                         </div>
                     </div>
                      <div class="flex flex-wrap -mx-3 mb-6">

@@ -63,7 +63,7 @@ class PekerjaanSeeder extends Seeder
                 'gaji' => 6000000,
                 'logo_perusahaan_path' => 'https://madingloker.com/wp-content/uploads/2021/04/PT-Astra-Honda-Motor.jpg',
                 'foto_lowongan' => 'https://images.unsplash.com/photo-1533906966484-a9c978a3f090?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1530&q=80',
-                'tentang_pembuka_lowongan' => 'Gramedia Asri Media adalah anak perusahaan Kompas Gramedia yang menyediakan jaringan toko buku dengan nama Toko Buku Gramedia di beberapa kota di Indonesia',
+                'tentang_pembuka_lowongan' => 'PT Astra Honda Motor adalah sebuah perusahaan yang bergerak dibidang manufaktur, perakitan dan distributor sepeda motor merek dan type Honda. Dan perusahaan ini merupakan satu-satunya di Indonesia yang memiliki hak sebagai Agen Tunggal Pemegang Merek sepeda motor Honda',
                 'tenggang_waktu_pekerjaan' => '2021-10-14 17:15:00',
                 'lokasi_pekerjaan' => 'Bandar Lampung',
                 'kategori' => 'Perusahaan',
@@ -84,7 +84,7 @@ class PekerjaanSeeder extends Seeder
              [
                 'id' => 6,
                 'nama_pekerjaan' => 'Web Developer',
-                'deskripsi' => 'Membutuhkan Fullstack Web Developer untuk membangun aplikasi sekolah dasar',
+                'deskripsi' => '    ',
                 'nama_perusahaan' => 'SMAN IT Islamic Boarding School',
                 'gaji' => null,
                 'logo_perusahaan_path' => 'https://uccareer.id/assets/upload/company/thumbs/thumb300px-20191120-160234-0ded2.jpg',

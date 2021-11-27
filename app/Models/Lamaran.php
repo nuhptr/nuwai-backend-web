@@ -11,16 +11,17 @@ class Lamaran extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'id_users',
-        'id_pekerjaan',
+        'id_users', 'id_pekerjaan',
     ];
 
-     // TODO: relationships
-    public function user() {
+    // TODO: relationships
+    public function user()
+    {
         return $this->belongsTo(User::class, "id_users", "id");
     }
 
-    public function pekerjaan() {
+    public function pekerjaan()
+    {
         return $this->belongsTo(Pekerjaan::class, "id_pekerjaan", "id");
     }
 }

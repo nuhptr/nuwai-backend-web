@@ -15,9 +15,10 @@ use Illuminate\Validation\Rules\Password;
 class UserController extends Controller
 {
     // TODO: fetch
-    public function fetch(Request $request) {
+    public function fetch(Request $request)
+    {
         $id = $request->input("id");
-        
+
         if ($id) {
             $user = User::with(["lamaran_pekerjaan"])->find($id);
 
@@ -39,7 +40,8 @@ class UserController extends Controller
     }
 
     // TODO: login
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         try {
             $request->validate([
                 "email" => "email|required",
@@ -54,7 +56,7 @@ class UserController extends Controller
             }
 
             $user = User::where('email', $request->email)->first();
-            if (! Hash::check($request->password, $user->password)) {
+            if (!Hash::check($request->password, $user->password)) {
                 throw new Exception("invalid credentials");
             }
 
@@ -73,7 +75,8 @@ class UserController extends Controller
     }
 
     // TODO: register
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         try {
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
@@ -105,28 +108,32 @@ class UserController extends Controller
     }
 
     // TODO: logout
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $token = $request->user()->currentAccessToken()->delete();
 
         return ResponseFormatter::success($token, 'Token revoked');
     }
 
     // TODO: update profile
-    public function updateProfile(Request $request) {
+    public function updateProfile(Request $request)
+    {
         $user = Auth::user();
         $data = $request->all();
 
         // dd($data);
-        
-        if ($request->File('file')) {
-            $file = $request->file('file')->store('assets/user', 'public');
 
-            // store your file into database
-            $user = Auth::user();
+        if ($request->file('file') || $request->file('cv_path')) {
+            $file = $request->file('file')->store('assets/user', 'public');
+            $cv = $request->file('cv_path')->store('assets/cv', 'public');
+
+            // $user = Auth::user();
             $user->profile_photo_path = $file;
+            $user->cv_path = $cv;
+
             $user->update();
 
-            return ResponseFormatter::success([$file], 'File Succesfully uploaded');
+            return ResponseFormatter::success([$file, $cv], 'File Succesfully uploaded');
         }
 
         // TODO: cuma error intelphensenya aja
